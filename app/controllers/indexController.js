@@ -1,8 +1,8 @@
-var querystring = require("querystring");
+const bodyParser     = require('body-parser');
 var mongoose = require("mongoose");
 require("../models/Lead");
 
-exports.index = (response, postData, db) => {
+exports.index = (response, request, db) => {
     console.log("Request handler 'start' was called.");
       
     var body = '<html>'+
@@ -24,28 +24,17 @@ exports.index = (response, postData, db) => {
 
 
 }
-exports.store = (response, postData, db) => {
+exports.store = (response, request, db) => {
     console.log("Request handler 'start' was called.");
 
-    /*let data = querystring.parse(postData);
-    db.collection('leads').insert(data, (err, result) => {
-        if(err){ 
-            return console.log(err);
-        }
-        console.log(result.ops);
-    });*/
-
-    //response.writeHead(200, {'Location': 'http://localhost:8888/start'});
-    //response.write(body);
-
    var LeadModel = mongoose.model("Lead");
-   var mylead = new LeadModel(querystring.parse(postData));
-
+   var mylead = new LeadModel(request.body);
+   
     mylead.save(function(err) {
         if(err) {
         console.log(err);
         } else {
-        console.log("Successfully created an employee.");
+        console.log("Successfully created an user.");
         }
     });
 

@@ -26,6 +26,7 @@ exports.index = (response, request, db) => {
 }
 exports.store = (response, request, db) => {
     console.log("Request handler 'start' was called.");
+    console.log(request.body);
 
    var LeadModel = mongoose.model("Lead");
    var mylead = new LeadModel(request.body);
@@ -37,6 +38,19 @@ exports.store = (response, request, db) => {
         console.log("Successfully created an user.");
         }
     });
+
+    response.end();
+
+}
+exports.users = (response, request, db) => {
+    console.log("Request handler 'users' was called.");
+    console.log(request.body);
+
+    response.json({ 
+        anObject: { item1: "item1val", item2: "item2val" }, 
+        anArray: ["item1", "item2"], 
+        another: "item"
+      });
 
     response.end();
 

@@ -9,16 +9,12 @@ app.use(bodyParser.json());
 const port = 8000;
 
 
-var corsOptions = {
-  origin: 'http://localhost',
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204 
-}
-
-
 //express-formidable
 
 require('../routes')(app, {});
 
+
+//mongoose.connect("mongodb+srv://servernode:bot123bot123@cluster0-vairy.mongodb.net/crm?retryWrites=true", {useNewUrlParser: true});
 function start() {
     app.listen(port, () => {
         console.log("Server has started on port - " + port);

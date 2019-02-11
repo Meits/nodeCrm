@@ -32,3 +32,34 @@ exports.index = (response, request, db) => {
     response.end();*/
 
 }
+
+exports.store = (response, request, db) => {
+    console.log("Request handler 'store' was called.");
+    console.log(request.body);
+
+   var SourceModel = mongoose.model("Source");
+   var mySource = new SourceModel({
+    title : request.body.title,
+    updated_at : request.body.updated_at
+   });
+   
+   
+   mySource.save(function(err,source) {
+        if(err) {
+        console.log(err);
+        } else {
+        console.log("Successfully created an Source.");
+        response.json(
+            source
+        );
+        response.end();
+        }
+
+    });
+
+    //response.header('Access-Control-Allow-Origin', '*');
+    //response.header('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
+    //response.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization');
+    //response.end();
+
+}

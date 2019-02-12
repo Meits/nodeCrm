@@ -74,8 +74,8 @@ exports.update = (response, request, db) => {
 //     updated_at : request.body.updated_at
 //    });
 
-    SourceModel.findByIdAndUpdate(
-        request.params.source,
+    SourceModel.findOneAndUpdate(
+        {_id : new mongoose.Types.ObjectId(request.params.source)},
         request.body,
         {new: true},
         (err, source) => {

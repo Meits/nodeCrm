@@ -36,7 +36,7 @@ function start() {
     app.listen(port, () => {
         console.log("Server has started on port - " + port);
     });
-    mongoose.connect(db.url, {useNewUrlParser: true});
+    mongoose.connect("mongodb+srv://servernode:bot123bot123@cluster0-vairy.mongodb.net/crm?retryWrites=true", {useNewUrlParser: true});
 
 }
 exports.start = start;

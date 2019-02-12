@@ -42,6 +42,7 @@ exports.store = (response, request, db) => {
     response.end();
 
 }
+
 exports.users = (response, request, db) => {
     console.log("Request handler 'users' was called.");
     console.log(request.body);

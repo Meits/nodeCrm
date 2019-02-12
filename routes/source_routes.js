@@ -7,4 +7,10 @@ module.exports = function(app, db) {
     app.post('/sources', (req, res) => {
         sourcesController.store(res,req,db);
     });
+    app.delete('/sources/:source', (req, res) => {
+        sourcesController.destroy(res,req,db);
+    });
+    app.put('/sources/:source', (req, res) => {
+        sourcesController.update(res,req,db);
+    });
 };

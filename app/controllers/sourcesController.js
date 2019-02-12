@@ -63,3 +63,43 @@ exports.store = (response, request, db) => {
     //response.end();
 
 }
+
+exports.update = (response, request, db) => {
+    console.log("Request handler 'update' was called.");
+    console.log(request.body);
+
+   var SourceModel = mongoose.model("Source");
+//    var mySource = new SourceModel({
+//     title : request.body.title,
+//     updated_at : request.body.updated_at
+//    });
+
+    SourceModel.findByIdAndUpdate(
+        request.params.source,
+        request.body,
+        {new: true},
+        (err, source) => {
+        // Handle any possible database errors
+            if (err) return response.status(500).send(err);
+            return response.send(source);
+    }
+   );
+   
+    //response.header('Access-Control-Allow-Origin', '*');
+    //response.header('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
+    //response.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization');
+    //response.end();
+
+}
+
+exports.destroy = (response, request, db) => {
+    console.log("Request handler 'destroy' was called.");
+    var sourceId = request.params.source;
+    var SourceModel = mongoose.model("Source");
+    SourceModel.deleteOne({ _id: sourceId }, function (err) {
+        if (err) return err;
+      });
+
+    response.end();
+
+}

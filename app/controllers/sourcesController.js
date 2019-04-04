@@ -10,7 +10,6 @@ exports.index = (response, request, db) => {
     SourceModel.find({}).exec(function(err, result) {
         if (!err) {
 
-            console.log(result);
             response.header('Access-Control-Allow-Origin', '*');
             response.header('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
             response.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization');
@@ -23,13 +22,6 @@ exports.index = (response, request, db) => {
             console.log(err);
           };
     });
-    /*response.json({ 
-        anObject: { item1: "item1val", item2: "item2val" }, 
-        anArray: ["item1", "item2"], 
-        another: "item"
-    });
-
-    response.end();*/
 
 }
 
@@ -57,11 +49,6 @@ exports.store = (response, request, db) => {
 
     });
 
-    //response.header('Access-Control-Allow-Origin', '*');
-    //response.header('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
-    //response.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization');
-    //response.end();
-
 }
 
 exports.update = (response, request, db) => {
@@ -69,10 +56,6 @@ exports.update = (response, request, db) => {
     console.log(request.body);
 
    var SourceModel = mongoose.model("Source");
-//    var mySource = new SourceModel({
-//     title : request.body.title,
-//     updated_at : request.body.updated_at
-//    });
 
     SourceModel.findOneAndUpdate(
         {_id : new mongoose.Types.ObjectId(request.params.source)},
@@ -84,11 +67,6 @@ exports.update = (response, request, db) => {
             return response.send(source);
     }
    );
-   
-    //response.header('Access-Control-Allow-Origin', '*');
-    //response.header('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
-    //response.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization');
-    //response.end();
 
 }
 
